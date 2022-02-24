@@ -1,0 +1,11 @@
+
+
+
+
+# 아래 라이브러리는 람다의 레이어로 만든다!
+# mysql-connector-python
+# flask-restful
+# psycopg2-binary
+# passlib
+# email-validator
+# Flask-JWT-Extended
