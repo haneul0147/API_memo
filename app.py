@@ -6,6 +6,7 @@ from http import HTTPStatus
 
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from resources.blocklist import check_blocklist
 from resources.longin import UserLoginResource
 
 from resources.memo import MemoInfoResource, MemoResource
@@ -25,8 +26,12 @@ jwt = JWTManager(app)
 
 @jwt.token_in_blocklist_loader
 def check_if_token_is_revoked(jwt_header, jwt_payload) :
+    # jti = jwt_payload['jti']
+    # return jti in jwt_blacklist
     jti = jwt_payload['jti']
-    return jti in jwt_blacklist
+    result = check_blocklist(jti)
+
+    return result
 
 api = Api(app)
 
